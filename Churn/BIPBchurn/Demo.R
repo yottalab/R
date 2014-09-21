@@ -1,3 +1,6 @@
+library("scales")
+library("plyr")
+
 ## Load sample data
 dataset<- get_dataset
 
@@ -32,7 +35,7 @@ revenue_end<- revenue_end(dataset)
 revenue_end
 
 ## C7 - Churn value in percent, decimals
-revenue_churn_perc<- revenue_churn_perc(dataset,1)
+revenue_churn_perc<- revenue_churn_perc(dataset)
 revenue_churn_perc
 
 ## C8 - Function (count service calls)
