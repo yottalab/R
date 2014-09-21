@@ -1,0 +1,10 @@
+* installing *source* package 'BIPBchurn' ...
+** R
+** preparing package for lazy loading
+** help
+Warning: C:/Users/SinNombre/Desktop/BIPBchurn/BIPBchurn.Rcheck/00_pkg_src/BIPBchurn/man/BIPBchurn-package.Rd:31: All text must be in a section
+Warning: C:/Users/SinNombre/Desktop/BIPBchurn/BIPBchurn.Rcheck/00_pkg_src/BIPBchurn/man/BIPBchurn-package.Rd:32: All text must be in a section
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (BIPBchurn)

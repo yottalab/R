@@ -1,0 +1,10 @@
+Package: BIPBchurn
+Type: Package
+Title: Churn detection and calculation
+Version: 1.1
+Date: 2014-06-16
+Author: Jan Rock <jan.rock@bipb.com>
+Maintainer: Who to complain to Jan Rock <jan.rock@bipb.com>
+Description: Churn detection and calculation <www.bipb.com>
+License: None
+Packaged: 2014-06-17 15:54:33 UTC; SinNombre

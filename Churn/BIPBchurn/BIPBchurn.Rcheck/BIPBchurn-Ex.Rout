@@ -1,0 +1,153 @@
+
+R version 3.1.0 (2014-04-10) -- "Spring Dance"
+Copyright (C) 2014 The R Foundation for Statistical Computing
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pkgname <- "BIPBchurn"
+> source(file.path(R.home("share"), "R", "examples-header.R"))
+> options(warn = 1)
+> options(pager = "console")
+> library('BIPBchurn')
+> 
+> base::assign(".oldSearch", base::search(), pos = 'CheckExEnv')
+> cleanEx()
+> nameEx("BIPBchurn-package")
+> ### * BIPBchurn-package
+> 
+> flush(stderr()); flush(stdout())
+> 
+> ### Name: BIPBchurn-package
+> ### Title: BIPBchurn - churn function, calculation, prediction
+> ### Aliases: BIPBchurn-package BIPBchurn
+> ### Keywords: package
+> 
+> ### ** Examples
+> 
+> ## Load sample data
+> dataset<- get_dataset
+> 
+> ## Print Head
+> head(dataset)
+  X state account_length     area_code international_plan voice_mail_plan
+1 1    KS            128 area_code_415                 no             yes
+2 2    OH            107 area_code_415                 no             yes
+3 3    NJ            137 area_code_415                 no              no
+4 4    OH             84 area_code_408                yes              no
+5 5    OK             75 area_code_415                yes              no
+6 6    AL            118 area_code_510                yes              no
+  number_vmail_messages total_day_minutes total_day_calls total_day_charge
+1                    25             265.1             110            45.07
+2                    26             161.6             123            27.47
+3                     0             243.4             114            41.38
+4                     0             299.4              71            50.90
+5                     0             166.7             113            28.34
+6                     0             223.4              98            37.98
+  total_eve_minutes total_eve_calls total_eve_charge total_night_minutes
+1             197.4              99            16.78               244.7
+2             195.5             103            16.62               254.4
+3             121.2             110            10.30               162.6
+4              61.9              88             5.26               196.9
+5             148.3             122            12.61               186.9
+6             220.6             101            18.75               203.9
+  total_night_calls total_night_charge total_intl_minutes total_intl_calls
+1                91              11.01               10.0                3
+2               103              11.45               13.7                3
+3               104               7.32               12.2                5
+4                89               8.86                6.6                7
+5               121               8.41               10.1                3
+6               118               9.18                6.3                6
+  total_intl_charge number_customer_service_calls churn
+1              2.70                             1    no
+2              3.70                             1    no
+3              3.29                             0    no
+4              1.78                             2    no
+5              2.73                             3    no
+6              1.70                             0    no
+> 
+> ## show random 10 rows from subset
+> dataset[sample(nrow(dataset), 10), ]
+        X state account_length     area_code international_plan voice_mail_plan
+885   885    DE             73 area_code_415                 no              no
+1240 1240    TX             64 area_code_415                 no              no
+1909 1909    MA             88 area_code_408                 no             yes
+3025 3025    OR            101 area_code_415                 no              no
+672   672    CT              3 area_code_415                 no             yes
+2990 2990    MI            108 area_code_408                yes              no
+3143 3143    DE             95 area_code_510                 no              no
+2198 2198    LA            133 area_code_415                 no              no
+2092 2092    CT             33 area_code_510                 no              no
+206   206    MO             66 area_code_415                 no             yes
+     number_vmail_messages total_day_minutes total_day_calls total_day_charge
+885                      0             254.8              85            43.32
+1240                     0             168.0             116            28.56
+1909                    45              80.3             140            13.65
+3025                     0             118.6              89            20.16
+672                     36             118.1             117            20.08
+2990                     0             115.1             114            19.57
+3143                     0             184.2              95            31.31
+2198                     0             216.2              67            36.75
+2092                     0             182.5              65            31.03
+206                     36             106.7              76            18.14
+     total_eve_minutes total_eve_calls total_eve_charge total_night_minutes
+885              143.4              80            12.19               153.9
+1240             192.4              94            16.35               166.5
+1909             153.3             101            13.03               309.2
+3025             199.6              97            16.97                53.3
+672              221.5             125            18.83               103.9
+2990             211.3              70            17.96               136.1
+3143             181.6             101            15.44               143.4
+2198             222.2             133            18.89               192.0
+2092             232.1              96            19.73               149.2
+206              209.8              77            17.83               190.4
+     total_night_calls total_night_charge total_intl_minutes total_intl_calls
+885                102               6.93               15.0                7
+1240                98               7.49               10.1                3
+1909               123              13.91               12.8                3
+3025                61               2.40               11.5                5
+672                 89               4.68               11.9                6
+2990                85               6.12               13.8                3
+3143               113               6.45               12.8                4
+2198                95               8.64                3.1                1
+2092                82               6.71                7.5                2
+206                117               8.57               12.1                2
+     total_intl_charge number_customer_service_calls churn
+885               4.05                             2    no
+1240              2.73                             2    no
+1909              3.46                             2    no
+3025              3.11                             1    no
+672               3.21                             2    no
+2990              3.73                             2   yes
+3143              3.46                             2    no
+2198              0.84                             2    no
+2092              2.03                             2    no
+206               3.27                             1    no
+> 
+> ## Average value of Customer Service Calls (indicator #1)
+> avg_serv_call<- avg_serv_call(dataset)
+> avg_serv_call
+[1] 1.562856
+> 
+> ## Sum of outboud charges (domestic - day/night, international) (value #1)
+> revenue_start<- revenue_start(dataset)
+> revenue_start
+[1] 141206.6
+> 
+> ## Calculated lost value (churn)
+> revenue_churn<- revenue_churn(dataset)
+Error in count_churn_Y(source) : could not find function "count"
+Calls: revenue_churn -> count_churn_Y
+Execution halted
