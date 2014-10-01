@@ -1,0 +1,65 @@
+#demo data set
+x <- 10:1
+y <- -4:5
+q <- c("Hockey","Football","Baseball","Curling","Rugby","Lacrosse","Basketball","Tennis","Cricket","Soccer")
+
+#create a dataframe
+theDF <- data.frame(x,y,q)
+theDF
+
+#rename headers
+theDF <- data.frame(First = x, Second = y, Sport = q)
+theDF
+
+#count of rows
+nrow(theDF)
+
+#count of columns
+ncol(theDF)
+
+#size (row/columns)
+dim(theDF)
+
+#print of headers
+names(theDF)
+
+#print of 3rd column header 
+names(theDF)[3]
+
+#print of row names
+rownames(theDF)
+
+#set up names of rows
+rownames(theDF) <- c("One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten")
+theDF
+
+#reset names of rows
+rownames(theDF) <- NULL
+theDF
+
+#head of DF
+head(theDF)
+
+#head with limit
+head(theDF, n=7)
+
+#tail of DF
+tail(theDF)
+
+#print of class
+class(theDF)
+
+#print of specific columns
+theDF$Sport
+
+#print of value on these coordinates
+theDF[3,2]
+theDF[3,2:3]
+theDF[c(3,5),2] #2nd cloumn value from 3 a 5 rows
+theDF[c(3,5),2:3]
+theDF[,3]
+theDF[,2:3]
+theDF[2,]
+theDF[2:4,]
+theDF[,c("First","Sport")]
+theDF[["Sport"]]
